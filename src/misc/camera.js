@@ -43,7 +43,7 @@ const narrowDownFacingMode = async camera => {
     // rear camera seems to be a good heuristic on some devices.
     const frontCamera = devices[0];
     //quick fix for Iphone Pro 'Desk View Camera' if previus code is not working
-    const rearCamera = devices[devices.length >= 5 ? devices.length - 2 : devices.length - 1 ];
+    const rearCamera = devices[devices.length >= 4 ? devices.length - 2 : devices.length - 1 ];
 
     switch (camera) {
       case "auto":
