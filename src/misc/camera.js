@@ -1,6 +1,9 @@
-import { StreamApiNotSupportedError, InsecureContextError } from "vue3-qrcode-reader/src/misc/errors.js";
+import {
+  StreamApiNotSupportedError,
+  InsecureContextError
+} from "./errors.js";
 import { eventOn, timeout } from "callforth";
-import shimGetUserMedia from "vue3-qrcode-reader/src/misc/shimGetUserMedia.js";
+import shimGetUserMedia from "./shimGetUserMedia.js";
 
 class Camera {
   constructor(videoEl, stream) {
@@ -30,7 +33,16 @@ class Camera {
 // media constraints don't allow us to specify which camera we want exactly.
 const narrowDownFacingMode = async camera => {
   // Filter some devices, known to be bad choices.
-  const deviceBlackList = ["OBS Virtual Camera", "OBS-Camera", "Desk View Camera", "Schreibtischansicht-Kamera", "Caméra Desk View", "Fotocamera di Panoramica Scrivania", "Rückseitige Ultra-Weitwinkelkamera", "Rückseitige Telefotokamera"];
+  const deviceBlackList = [
+    "OBS Virtual Camera",
+    "OBS-Camera",
+    "Desk View Camera",
+    "Schreibtischansicht-Kamera",
+    "Caméra Desk View",
+    "Fotocamera di Panoramica Scrivania",
+    "Rückseitige Ultra-Weitwinkelkamera",
+    "Rückseitige Telefotokamera"
+  ];
 
   const devices = (await navigator.mediaDevices.enumerateDevices())
     .filter(({ kind }) => kind === "videoinput")
@@ -43,7 +55,7 @@ const narrowDownFacingMode = async camera => {
     // rear camera seems to be a good heuristic on some devices.
     const frontCamera = devices[0];
     //quick fix for Iphone Pro 'Desk View Camera' if previus code is not working
-    const rearCamera = devices[devices.length >= 4 ? devices.length - 2 : devices.length - 1 ];
+    const rearCamera = devices[devices.length - 1];
 
     switch (camera) {
       case "auto":

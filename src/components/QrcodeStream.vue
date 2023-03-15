@@ -31,7 +31,7 @@
 <script>
 import { keepScanning } from "../misc/scanner.js";
 import { thinSquare } from "../misc/track-func.js";
-import Camera from "vue3-qrcode-reader/src/misc/camera123.js";
+import Camera from "../misc/camera.js";
 import CommonAPI from "../mixins/CommonAPI.vue";
 import Worker from "../worker/jsqr.js";
 
